@@ -7,237 +7,133 @@
 <style>
 :root { color-scheme: light; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Segoe UI', Calibri, system-ui, sans-serif;
-  background: #eef2f7; color: #1A2B4A; padding: 32px 20px; line-height: 1.4;
-}
+body { font-family: 'Segoe UI', Calibri, system-ui, sans-serif; background: #eef2f7; color: #1A2B4A; padding: 32px 20px; line-height: 1.35; }
 .wrap { max-width: 1180px; margin: 0 auto; }
 h1 { font-size: 26px; color: #1A2B4A; }
 .sub { font-size: 15px; color: #2E6FB0; font-weight: 600; margin-top: 2px; }
-.meta { font-size: 12px; color: #667; font-style: italic; margin: 6px 0 26px; }
-
-.lane-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8794a8; margin: 26px 0 10px; }
-
-.flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
-.row { display: flex; justify-content: center; gap: 26px; width: 100%; flex-wrap: wrap; }
-
-.node {
-  border-radius: 12px; padding: 14px 18px; width: 300px; box-shadow: 0 2px 7px rgba(26,43,74,.10);
-  background: #fff; border: 1px solid #dde4ee; position: relative;
-}
-.node .tag { font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .85; }
-.node .ttl { font-size: 15px; font-weight: 700; margin: 4px 0 5px; }
-.node .body { font-size: 12.5px; color: #3a4a63; }
-.node .who { font-size: 11.5px; font-weight: 600; margin-top: 7px; color: #2E6FB0; }
-
-.start { background: #1A2B4A; color: #fff; border: none; }
-.start .ttl, .start .body { color: #fff; }
-.start .tag { color: #b9cdec; }
-
+.meta { font-size: 12px; color: #667; font-style: italic; margin: 6px 0 20px; }
+.lane-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8794a8; margin: 22px 0 10px; }
+.flow { display: flex; flex-direction: column; align-items: center; }
+.row { display: flex; justify-content: center; gap: 22px; width: 100%; flex-wrap: wrap; }
+.node { border-radius: 11px; padding: 12px 15px; width: 260px; box-shadow: 0 2px 6px rgba(26,43,74,.10); background: #fff; border: 1px solid #dde4ee; }
+.node .tag { font-size: 9.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; opacity: .9; }
+.node .ttl { font-size: 14px; font-weight: 700; margin: 3px 0 4px; }
+.node .body { font-size: 11.5px; color: #3a4a63; }
+.node .who { font-size: 11px; font-weight: 600; margin-top: 6px; color: #2E6FB0; }
 .intake-form { border-top: 5px solid #2E6FB0; }
 .intake-email { border-top: 5px solid #6a7fb5; }
-.intake-other { border-top: 5px solid #c8851a; background:#fffdf7; }
+.intake-other { border-top: 5px solid #8a6d3b; background:#fffdf7; }
 .triage { border-top: 5px solid #c8851a; background: #fffaf1; }
 .ls { border-top: 5px solid #1f8a5b; background: #f1faf4; }
 .hs { border-top: 5px solid #7a4fb0; background: #f7f3fc; }
+.legal { border-top: 5px solid #b8322f; background: #fdf0ef; }
 .demo { border-top: 5px solid #c8851a; background:#fffaf1; }
-.provision { border-top: 5px solid #1A2B4A; background: #eef2f9; }
+.prov { border-top: 5px solid #1A2B4A; background: #eef2f9; }
 .grant { border-top: 5px solid #1f8a5b; background: #eafaf0; }
-
-.arrow { width: 2px; height: 26px; background: #9fb0c8; position: relative; }
+.arrow { width: 2px; height: 22px; background: #9fb0c8; position: relative; margin: 2px 0; }
 .arrow::after { content:''; position:absolute; bottom:-1px; left:-4px; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid #9fb0c8; }
-.arrow.wide { width: 60%; height: 2px; margin: 13px 0; }
-
-.split { display:flex; justify-content:center; gap:26px; position:relative; width:100%; }
-.connector-h { height: 22px; width: 100%; display:flex; justify-content:center; }
-
-.legend { margin-top: 30px; background:#fff; border-radius:12px; padding:16px 20px; border:1px solid #dde4ee; }
-.legend h3 { font-size:13px; color:#1A2B4A; margin-bottom:8px; }
-.legend ul { list-style:none; font-size:12.5px; color:#3a4a63; }
-.legend li { padding:3px 0; padding-left:18px; position:relative; }
-.legend li::before { content:'▸'; position:absolute; left:0; color:#2E6FB0; }
-.pill { display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-right:6px; }
-.pill.ls { background:#1f8a5b; color:#fff; }
-.pill.hs { background:#7a4fb0; color:#fff; }
-.note { font-size:11px; color:#667; font-style:italic; margin-top:18px; }
-.colhead { font-size:13px; font-weight:700; text-align:center; width:300px; padding:6px; border-radius:8px 8px 0 0; }
+.diamond { width: 320px; background:#b8322f; color:#fff; border-radius:11px; padding:12px 16px; text-align:center; box-shadow:0 2px 6px rgba(184,50,47,.25); }
+.diamond .tag { font-size:9.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#fbd9d7; }
+.diamond .q { font-size:13.5px; font-weight:700; margin-top:3px; }
+.branch { display:flex; gap:150px; justify-content:center; margin:6px 0; }
+.branch .lbl { font-size:12px; font-weight:700; }
+.yes { color:#1f8a5b; } .no { color:#b8322f; }
+.colhead { font-size:12.5px; font-weight:700; text-align:center; width:260px; padding:5px; border-radius:8px 8px 0 0; }
 .colhead.ls { background:#1f8a5b; color:#fff;}
 .colhead.hs { background:#7a4fb0; color:#fff;}
+.legend { margin-top: 26px; background:#fff; border-radius:11px; padding:15px 18px; border:1px solid #dde4ee; }
+.legend h3 { font-size:13px; color:#1A2B4A; margin-bottom:7px; }
+.legend ul { list-style:none; font-size:12px; color:#3a4a63; }
+.legend li { padding:2px 0; padding-left:16px; position:relative; }
+.legend li::before { content:'\25b8'; position:absolute; left:0; color:#2E6FB0; }
+.note { font-size:10.5px; color:#667; font-style:italic; margin-top:16px; }
+.tag-red { color:#b8322f; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Helix GenoSphere™ MCP Connector</h1>
-  <div class="sub">Inbound Access Request — Intake, Triage & Provisioning Workflow</div>
-  <div class="meta">Three intake channels → triage → routing → demo → provisioning · Launch phase, June 2026</div>
+  <h1>Helix GenoSphere&trade; MCP Connector</h1>
+  <div class="sub">Inbound Access Request &mdash; Intake &rarr; Triage &rarr; Legal Gate &rarr; Demo &rarr; Provisioning</div>
+  <div class="meta">Legal prerequisites confirmed before any demo &middot; Launch phase &middot; Updated July 14, 2026 (per Legal)</div>
 
-  <!-- INTAKE -->
-  <div class="lane-label">① Intake — three channels</div>
-  <div class="flow">
-    <div class="row">
-      <div class="node intake-form">
-        <div class="tag" style="color:#2E6FB0">Channel A · Website</div>
-        <div class="ttl">Form submission</div>
-        <div class="body">Requester completes the website HubSpot form (linked from the connector listing + resource page). Self-selects segment.</div>
-      </div>
-      <div class="node intake-email">
-        <div class="tag" style="color:#6a7fb5">Channel B · Email</div>
-        <div class="ttl">Email inquiry</div>
-        <div class="body">Partner emails the centralized alias <b>mcp@helix.com</b> — preferred for institutional partners who shouldn't have to fill a form.</div>
-      </div>
-      <div class="node intake-other">
-        <div class="tag" style="color:#8a6d3b">Channel C · Other sources</div>
-        <div class="ttl">Any other inbound</div>
-        <div class="body">Other Helix websites/landing pages, direct emails to individual reps, referrals, event/booth leads, or Anthropic-directory clicks. <b>All are funneled to <span style="white-space:nowrap">mcp@helix.com</span></b> to enter this workflow.</div>
-      </div>
+  <div class="lane-label">&#9312; Intake &mdash; three channels</div>
+  <div class="flow"><div class="row">
+    <div class="node intake-form"><div class="tag" style="color:#2E6FB0">A &middot; Website</div><div class="ttl">Form submission</div><div class="body">HubSpot form &mdash; name, email, institution. Self-selects segment.</div></div>
+    <div class="node intake-email"><div class="tag" style="color:#6a7fb5">B &middot; Email</div><div class="ttl">Email inquiry</div><div class="body">Sent to <b>mcp@helix.com</b>.</div></div>
+    <div class="node intake-other"><div class="tag" style="color:#8a6d3b">C &middot; Other</div><div class="ttl">All other inbound</div><div class="body">Referrals, rep emails, events, directory clicks &rarr; funneled to <b>mcp@helix.com</b>.</div></div>
+  </div><div class="arrow"></div></div>
+
+  <div class="lane-label">&#9313; Triage &mdash; log &amp; route (tracked in Excel)</div>
+  <div class="flow"><div class="row">
+    <div class="node triage"><div class="tag" style="color:#c8851a">Form path</div><div class="ttl">Marketing triages</div><div class="body">Routes to HS or LS by segment + domain.</div><div class="who">Marketing (Jay Shah &amp; Charlotte Franco)</div></div>
+    <div class="node triage"><div class="tag" style="color:#c8851a">Email / other path</div><div class="ttl">Inbox team flags</div><div class="body">Channels B &amp; C flagged, assigned to HS or LS.</div><div class="who">mcp@helix.com inbox team</div></div>
+  </div><div class="arrow"></div></div>
+
+  <div class="lane-label">&#9314; Routing &mdash; commercial owner picks up the request</div>
+  <div class="flow"><div class="row">
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="colhead ls">LIFE SCIENCES / BIOTECH</div>
+      <div class="node ls"><div class="ttl">LS BD owns it</div><div class="body">Existing partners fast-tracked; new prospects qualified.</div><div class="who">Life Sciences BD</div></div>
     </div>
-  </div>
-
-  <div class="flow">
-    <div style="font-size:11.5px;color:#8a6d3b;font-style:italic;margin-top:12px;max-width:760px;text-align:center">
-      Channel C is a catch-all: any inbound that isn't the website form is redirected to <b>mcp@helix.com</b>, so it merges into the email path for triage.
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="colhead hs">HEALTH SYSTEMS / HRN</div>
+      <div class="node hs"><div class="ttl">DA owns it</div><div class="body">Site DA supports outreach (like Cohort Builder Explorer).</div><div class="who">Health Systems DA</div></div>
     </div>
-  </div>
+  </div><div class="arrow"></div></div>
 
-  <!-- TRIAGE -->
-  <div class="lane-label">② Triage — flag &amp; route</div>
+  <div class="lane-label">&#9315; Legal gate &mdash; confirm BEFORE scheduling a demo</div>
+  <div class="flow"><div class="row">
+    <div class="node ls"><div class="tag" style="color:#1f8a5b">LS &middot; confidentiality</div><div class="ttl">NDA required</div><div class="body">New prospects sign an <b>institutional NDA</b> (also the lead-gen step). Existing? Confirm NDA in place.</div></div>
+    <div class="node hs"><div class="tag" style="color:#7a4fb0">HS &middot; confidentiality</div><div class="ttl">No new NDA</div><div class="body">Covered by existing collaboration / confidentiality agreements &mdash; MCP is a feature of the platform.</div></div>
+  </div><div class="arrow"></div></div>
+
   <div class="flow">
+    <div class="diamond"><div class="tag">Decision &middot; non-negotiable</div><div class="q">Does the institution have a ZDR agreement with Anthropic?</div></div>
+    <div class="branch"><div class="lbl no">NO &#9660;</div><div class="lbl yes">YES &#9660;</div></div>
     <div class="row">
-      <div class="node triage">
-        <div class="tag" style="color:#c8851a">Form path</div>
-        <div class="ttl">Marketing triages</div>
-        <div class="body">Marketing reviews the submission and routes it to the Health Systems or Life Sciences team based on segment + email domain.</div>
-        <div class="who">Owner: Marketing (Jay Shah &amp; Charlotte Franco)</div>
-      </div>
-      <div class="node triage">
-        <div class="tag" style="color:#c8851a">Email path</div>
-        <div class="ttl">Inbox team flags</div>
-        <div class="body">All non-form inbound (Channels B &amp; C) lands in the closed team inbox (mcp@helix.com). Inbox members flag each request and assign it to HS or LS.</div>
-        <div class="who">Owner: mcp@helix.com inbox team</div>
-      </div>
+      <div class="node legal"><div class="tag tag-red">Stop &mdash; don't demo</div><div class="ttl">No ZDR &rarr; no MCP</div><div class="body">Don't preview the MCP (they can't use it). Optionally offer Explorer; log as a lead.</div></div>
+      <div class="node grant"><div class="tag" style="color:#1f8a5b">Proceed</div><div class="ttl">ZDR confirmed</div><div class="body">FYI up front: ZDR confirmation (in writing) + platform T&amp;Cs required &mdash; take-it-or-leave-it.</div><div class="who">Owner: DA (HS) &middot; LS BD (LS) &mdash; not Basil</div></div>
     </div>
     <div class="arrow"></div>
   </div>
 
-  <!-- ROUTING: two columns LS / HS -->
-  <div class="lane-label">③ Routing — segment owner works with the requester</div>
-  <div class="flow">
-    <div class="row">
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="colhead ls">LIFE SCIENCES / BIOTECH</div>
-        <div class="node ls">
-          <div class="tag" style="color:#1f8a5b">LS team</div>
-          <div class="ttl">Qualify &amp; set up</div>
-          <div class="body">LS BD works with the individual. Existing partners fast-tracked; new prospects → demo, slides, NDA. Confirm Anthropic enterprise agreement (ZDR) + MCP T&amp;Cs accepted.</div>
-          <div class="who">Owner: Life Sciences BD team</div>
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="colhead hs">HEALTH SYSTEMS / HRN</div>
-        <div class="node hs">
-          <div class="tag" style="color:#7a4fb0">HS team</div>
-          <div class="ttl">Qualify &amp; set up</div>
-          <div class="body">HS BD / site DA works with the individual. Existing HRN site → its DA; new prospect → demo. Confirm Anthropic enterprise agreement (ZDR) + MCP T&amp;Cs accepted.</div>
-          <div class="who">Owner: Health Systems BD / site DA</div>
-        </div>
-      </div>
-    </div>
-    <div class="arrow"></div>
-  </div>
+  <div class="lane-label">&#9316; Demo meeting</div>
+  <div class="flow"><div class="row">
+    <div class="node demo" style="width:560px"><div class="tag" style="color:#c8851a">Live session</div><div class="ttl">MCP overview + brief demo</div><div class="body">Overview slides (what it does / guardrails) &rarr; 1 access slide &rarr; live demo in Claude. Reiterate T&amp;Cs as FYI.</div><div class="who">Basil Khuder / Product (technical + demo only)</div></div>
+  </div><div class="arrow"></div></div>
 
-  <!-- DEMO MEETING -->
-  <div class="lane-label">④ Demo meeting — present, then align on access</div>
-  <div class="flow">
-    <div class="row">
-      <div class="node demo" style="width:660px">
-        <div class="tag" style="color:#c8851a">Live session with the requester</div>
-        <div class="ttl">MCP overview, access walkthrough &amp; brief demo</div>
-        <div class="body">The demo meeting is run by <b>Basil Khuder / Product</b>, with BD and DA support, and covers: (1) the <b>MCP overview slides</b> — what GenoSphere is, the value, and the aggregate/read-only guardrails; (2) <b>how to access it</b> — enterprise/ZDR + T&amp;Cs prerequisites, the MCP group/role, and Okta sign-in; and (3) a <b>brief live demo</b> of the connector answering a sample question in Claude.</div>
-        <div class="who">Owner: Basil Khuder / Product (with BD &amp; DA support)</div>
-      </div>
-    </div>
-    <div class="arrow"></div>
-  </div>
+  <div class="lane-label">&#9317; Provisioning &mdash; legal complete, then access</div>
+  <div class="flow"><div class="row">
+    <div class="node prov" style="width:560px"><div class="tag" style="color:#1A2B4A">Prereqs signed</div><div class="ttl">Institution signs ZDR side letter</div><div class="body">Someone with authority signs the <b>ZDR side letter</b> (confirms Anthropic ZDR). Commercial owner ensures it's done.</div><div class="who">Owner: DA (HS) &middot; LS BD (LS)</div></div>
+  </div><div class="arrow"></div></div>
 
-  <!-- PROVISIONING HANDOFF (DEEP) -->
-  <div class="lane-label">⑤ Provisioning — handoff from BD to access owners</div>
-  <div class="flow">
-    <div class="row">
-      <div class="node provision" style="width:660px">
-        <div class="tag" style="color:#1A2B4A">Why a handoff exists</div>
-        <div class="ttl">BD and/or DAs confirm &amp; route; access owners complete provisioning</div>
-        <div class="body">Before the handoff, <b>BD and/or DAs confirm</b> the partner is eligible, the Anthropic enterprise agreement (zero-data retention) is in place, and MCP T&amp;Cs are accepted. The role-add is then completed by the access owners, with BD and/or DAs staying involved through activation. <b>The provisioning model differs by segment</b> — Life Sciences is centralized; Health Systems is site-controlled.</div>
-        <div class="who">Gate before handoff: eligible region · enterprise/ZDR confirmed · T&amp;Cs accepted</div>
-      </div>
+  <div class="flow"><div class="row">
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="colhead ls">LIFE SCIENCES &mdash; centralized</div>
+      <div class="node ls" style="width:260px"><div class="tag" style="color:#1f8a5b">Step 6A</div><div class="ttl">LS files a DEX ticket</div><div class="body">DEX adds the <b>anthropic-enterprise-mcp</b> group per named user.</div><div class="who">LS BD &rarr; DEX</div></div>
     </div>
-    <div class="arrow"></div>
-  </div>
-
-  <div class="flow">
-    <div class="row">
-      <!-- LS provisioning column -->
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="colhead ls">LIFE SCIENCES — centralized provisioning</div>
-        <div class="node ls" style="width:320px">
-          <div class="tag" style="color:#1f8a5b">Step 5A·1</div>
-          <div class="ttl">LS team files a DEX ticket</div>
-          <div class="body">Once approved, the LS team submits a ticket to the <b>DEX team</b> requesting the MCP permission for the named user. LS does not add the role itself.</div>
-          <div class="who">Owner: Life Sciences BD → DEX</div>
-        </div>
-        <div class="arrow"></div>
-        <div class="node grant" style="width:320px">
-          <div class="tag" style="color:#1f8a5b">Step 5A·2</div>
-          <div class="ttl">DEX adds the MCP group</div>
-          <div class="body">DEX adds the dedicated group (<b>anthropic-enterprise-mcp</b>) to that user. Note: many LS customers are <b>not</b> SSO-integrated, so Helix — not the customer's IT — controls the mapping. This is the spoofing/personal-account risk the team flagged.</div>
-          <div class="who">Owner: DEX team</div>
-        </div>
-      </div>
-
-      <!-- HS provisioning column -->
-      <div style="display:flex;flex-direction:column;align-items:center">
-        <div class="colhead hs">HEALTH SYSTEMS / HRN — site-controlled</div>
-        <div class="node hs" style="width:320px">
-          <div class="tag" style="color:#7a4fb0">Step 5B·1</div>
-          <div class="ttl">Helix qualifies the institution</div>
-          <div class="body">The site engages its <b>DA</b> to request access for the institution. Helix confirms the site qualifies (enterprise agreement + ZDR), then <b>enables</b> the site to manage the MCP group itself.</div>
-          <div class="who">Owner: site DA + Helix</div>
-        </div>
-        <div class="arrow"></div>
-        <div class="node grant" style="width:320px">
-          <div class="tag" style="color:#7a4fb0">Step 5B·2</div>
-          <div class="ttl">Site adds the group to its users</div>
-          <div class="body">The site adds the special MCP group to each named user — <b>controlled by the site, exactly like Explorer &amp; Genesis access today</b>. Must be done explicitly per person, including users who already have other access.</div>
-          <div class="who">Owner: site IdP / admin (self-service)</div>
-        </div>
-      </div>
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="colhead hs">HEALTH SYSTEMS &mdash; site-controlled</div>
+      <div class="node hs" style="width:260px"><div class="tag" style="color:#7a4fb0">Step 6B</div><div class="ttl">Site adds the group</div><div class="body">Site adds the MCP group per named user &mdash; like Explorer/Genesis today.</div><div class="who">Site IdP / admin</div></div>
     </div>
-  </div>
+  </div><div class="arrow"></div></div>
 
-  <div class="connector-h"></div>
-  <div class="flow">
-    <div class="row">
-      <div class="node grant" style="width:660px;border-top:5px solid #1A2B4A;background:#eef2f9">
-        <div class="tag" style="color:#1A2B4A">Step 6 · both paths converge — technical authorization</div>
-        <div class="ttl">User connects in Claude → system verifies before any data</div>
-        <div class="body">User enables <b>Helix GenoSphere</b> in Claude → authentication popup → sign in via <b>Okta</b> → the connector checks authorization on connect <i>and</i> on every tool call: valid MCP group, valid enterprise agreement, and current T&amp;Cs version accepted. Only then is the connection enabled and queries run. Access is restricted to Claude (no general MCP clients) to shrink the attack surface.</div>
-        <div class="who">Owner: Engineering · enforced automatically · access is read-only, aggregate-only</div>
-      </div>
-    </div>
-  </div>
+  <div class="lane-label">&#9318; Individual activation &mdash; technical authorization</div>
+  <div class="flow"><div class="row">
+    <div class="node grant" style="width:560px;border-top:5px solid #1A2B4A;background:#eef2f9"><div class="tag" style="color:#1A2B4A">Per user &middot; enforced automatically</div><div class="ttl">Enable in Claude &rarr; Okta &rarr; accept T&amp;Cs</div><div class="body">Each user accepts platform <b>T&amp;Cs</b> at account creation (checkbox). Connector verifies group + ZDR + T&amp;Cs on connect and every tool call. Read-only, aggregate-only, Claude-only.</div><div class="who">Engineering &middot; <span class="tag-red">open: confirm marketplace access enforces T&amp;Cs (Nicole / Matt)</span></div></div>
+  </div></div>
 
   <div class="legend">
-    <h3>Key rules carried through the workflow</h3>
+    <h3>Key rules &amp; legal notes</h3>
     <ul>
-      <li><span class="pill ls">LS</span><span class="pill hs">HS</span> Every user needs a new MCP-specific group/role added by their IdP — <b>no one gets access on Day 1</b>, even existing Explorer users.</li>
-      <li>All serviceable partners must hold an Anthropic enterprise agreement with <b>zero-data retention</b>, accessed via a corporate (not personal) Claude account.</li>
-      <li>BD teams route; they don't provision. <b>Life Sciences</b> = centralized (BD files a DEX ticket; DEX adds the role). <b>Health Systems</b> = site-controlled (the site adds the role itself, like Explorer/Genesis).</li>
-      <li>The MCP group must be added explicitly <b>per named user</b> — including people who already hold Explorer/Genesis access.</li>
-      <li>Authorization is enforced by the connector on connect <b>and on every tool call</b> (valid group + enterprise/ZDR + current T&amp;Cs); access is restricted to Claude only.</li>
-      <li>Out-of-region (outside North America &amp; Europe), academic, and general-public requests are not serviceable at launch — logged to the interested-parties list.</li>
+      <li><b>ZDR is the gate.</b> Confirm an Anthropic ZDR agreement (non-negotiable) <b>before</b> scheduling any demo &mdash; don't waste a demo on someone who can't use the tool.</li>
+      <li><b>NDA differs by segment.</b> LS new prospects sign an institutional NDA (lead-gen); HS partners are already covered by collaboration/confidentiality agreements &mdash; no new NDA.</li>
+      <li><b>Two consent levels.</b> Institution signs the ZDR side letter; each individual accepts platform T&amp;Cs at account creation (checkbox, no DocuSign).</li>
+      <li><b>Owners.</b> The commercial owner (DA for HS, LS BD for LS) drives legal prereqs &mdash; Basil is technical/demo only.</li>
+      <li><b>Open items.</b> Confirm marketplace-initiated access still enforces T&amp;Cs (Nicole/Matt); clarify SSO for MCP (Jim); unified T&amp;Cs still in development (Legal).</li>
     </ul>
   </div>
-
-  <div class="note">Internal working document — reflects launch-phase workflow from the LSG bi-weekly (June 29, 2026) and the cross-functional (June 26, 2026). Provisioning owners and exact ticketing path to be finalized by the group.</div>
+  <div class="note">Internal working document &mdash; reflects Legal input from J. Shah / M. Ziv (July 14, 2026), the LSG bi-weekly (June 29), and the cross-functional (June 26). To be finalized Thursday.</div>
 </div>
 </body>
 </html>
