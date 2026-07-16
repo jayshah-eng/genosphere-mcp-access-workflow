@@ -48,6 +48,13 @@ h1 { font-size: 26px; color: #1A2B4A; }
 .legend li::before { content:'\25b8'; position:absolute; left:0; color:#2E6FB0; }
 .note { font-size:10.5px; color:#667; font-style:italic; margin-top:16px; }
 .tag-red { color:#b8322f; }
+a, a:visited { color:#2E6FB0; font-weight:600; text-decoration:none; border-bottom:1px solid #b9cdec; }
+a:hover { border-bottom-color:#2E6FB0; }
+.links { margin-top:18px; background:#fff; border-radius:11px; padding:15px 18px; border:1px solid #dde4ee; }
+.links h3 { font-size:13px; color:#1A2B4A; margin-bottom:7px; }
+.links ul { list-style:none; font-size:12px; color:#3a4a63; }
+.links li { padding:3px 0; padding-left:16px; position:relative; }
+.links li::before { content:"\1F517"; position:absolute; left:0; font-size:10px; }
 </style>
 </head>
 <body>
@@ -58,7 +65,7 @@ h1 { font-size: 26px; color: #1A2B4A; }
 
   <div class="lane-label">&#9312; Intake &mdash; three channels</div>
   <div class="flow"><div class="row">
-    <div class="node intake-form"><div class="tag" style="color:#2E6FB0">A &middot; Website</div><div class="ttl">Form submission</div><div class="body">HubSpot form &mdash; name, email, institution. Self-selects segment.</div></div>
+    <div class="node intake-form"><div class="tag" style="color:#2E6FB0">A &middot; Website</div><div class="ttl">Form submission</div><div class="body">HubSpot form on the <a href="https://www.helix.com/resources/helix-genosphere-claude-connector" target="_blank">MCP landing page</a> &mdash; name, email, institution. Self-selects segment.</div></div>
     <div class="node intake-email"><div class="tag" style="color:#6a7fb5">B &middot; Email</div><div class="ttl">Email inquiry</div><div class="body">Sent to <b>mcp@helix.com</b>.</div></div>
     <div class="node intake-other"><div class="tag" style="color:#8a6d3b">C &middot; Other</div><div class="ttl">All other inbound</div><div class="body">Referrals, rep emails, events, directory clicks &rarr; funneled to <b>mcp@helix.com</b>.</div></div>
   </div><div class="arrow"></div></div>
@@ -91,7 +98,7 @@ h1 { font-size: 26px; color: #1A2B4A; }
     <div class="diamond"><div class="tag">Decision &middot; non-negotiable</div><div class="q">Does the institution have a ZDR agreement with Anthropic?</div></div>
     <div class="branch"><div class="lbl no">NO &#9660;</div><div class="lbl yes">YES &#9660;</div></div>
     <div class="row">
-      <div class="node legal"><div class="tag tag-red">Stop &mdash; don't demo</div><div class="ttl">No ZDR &rarr; no MCP</div><div class="body">Don't preview the MCP (they can't use it). Optionally offer Explorer; log as a lead.</div></div>
+      <div class="node legal"><div class="tag tag-red">Stop &mdash; don't demo</div><div class="ttl">No ZDR &rarr; no MCP</div><div class="body">Don't preview the MCP (they can't use it). Optionally offer Explorer; log to the <a href="https://docs.google.com/spreadsheets/d/11GrxYLOw6jAje_-Yb05B-VQrQCz71MRvH91F1zcghvs/edit" target="_blank">MCP access lead list</a>.</div></div>
       <div class="node grant"><div class="tag" style="color:#1f8a5b">Proceed</div><div class="ttl">ZDR confirmed</div><div class="body">FYI up front: ZDR confirmation (in writing) + platform T&amp;Cs required &mdash; take-it-or-leave-it.</div><div class="who">Owner: DA (HS) &middot; LS BD (LS) &mdash; not Basil</div></div>
     </div>
     <div class="arrow"></div>
@@ -104,13 +111,13 @@ h1 { font-size: 26px; color: #1A2B4A; }
 
   <div class="lane-label">&#9317; Provisioning &mdash; legal complete, then access</div>
   <div class="flow"><div class="row">
-    <div class="node prov" style="width:560px"><div class="tag" style="color:#1A2B4A">Prereqs signed</div><div class="ttl">Institution signs ZDR side letter</div><div class="body">Someone with authority signs the <b>ZDR side letter</b> (confirms Anthropic ZDR). Commercial owner ensures it's done.</div><div class="who">Owner: DA (HS) &middot; LS BD (LS)</div></div>
+    <div class="node prov" style="width:560px"><div class="tag" style="color:#1A2B4A">Prereqs signed</div><div class="ttl">Institution signs ZDR side letter</div><div class="body">Someone with authority signs the <b>GenoSphere MCP Access Agreement</b> (the ZDR side letter, confirming Anthropic ZDR). Commercial owner ensures it's done.</div><div class="who">Owner: DA (HS) &middot; LS BD (LS)</div></div>
   </div><div class="arrow"></div></div>
 
   <div class="flow"><div class="row">
     <div style="display:flex;flex-direction:column;align-items:center">
       <div class="colhead ls">LIFE SCIENCES &mdash; centralized</div>
-      <div class="node ls" style="width:260px"><div class="tag" style="color:#1f8a5b">Step 6A</div><div class="ttl">LS files a DEX ticket</div><div class="body">DEX adds the <b>anthropic-enterprise-mcp</b> group per named user.</div><div class="who">LS BD &rarr; DEX</div></div>
+      <div class="node ls" style="width:260px"><div class="tag" style="color:#1f8a5b">Step 6A</div><div class="ttl">LS files a DEX ticket</div><div class="body">LS files a <a href="https://myhelix.atlassian.net/servicedesk/customer/portal/26/group/71/create/11045" target="_blank">DEX ticket</a>; DEX adds the <b>anthropic-enterprise-mcp</b> group per named user.</div><div class="who">LS BD &rarr; DEX</div></div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center">
       <div class="colhead hs">HEALTH SYSTEMS &mdash; site-controlled</div>
@@ -131,6 +138,15 @@ h1 { font-size: 26px; color: #1A2B4A; }
       <li><b>Two consent levels.</b> Institution signs the ZDR side letter; each individual accepts platform T&amp;Cs at account creation (checkbox, no DocuSign).</li>
       <li><b>Owners.</b> The commercial owner (DA for HS, LS BD for LS) drives legal prereqs &mdash; Basil is technical/demo only.</li>
       <li><b>Open items.</b> Confirm marketplace-initiated access still enforces T&amp;Cs (Nicole/Matt); clarify SSO for MCP (Jim); unified T&amp;Cs still in development (Legal).</li>
+    </ul>
+  </div>
+  <div class="links">
+    <h3>Links &amp; resources</h3>
+    <ul>
+      <li><a href="https://www.helix.com/resources/helix-genosphere-claude-connector" target="_blank">MCP connector landing page</a> &mdash; public overview + request form</li>
+      <li><a href="https://myhelix.atlassian.net/servicedesk/customer/portal/26/group/71/create/11045" target="_blank">DEX access ticket</a> &mdash; request the anthropic-enterprise-mcp group (LS path)</li>
+      <li><a href="https://docs.google.com/spreadsheets/d/11GrxYLOw6jAje_-Yb05B-VQrQCz71MRvH91F1zcghvs/edit" target="_blank">MCP access lead list</a> &mdash; log inbound &amp; not-yet-eligible leads</li>
+      <li><b>GenoSphere MCP Access Agreement</b> &mdash; the ZDR side letter signed by the institution</li>
     </ul>
   </div>
   <div class="note">Internal working document &mdash; reflects Legal input from J. Shah / M. Ziv (July 14, 2026), the LSG bi-weekly (June 29), and the cross-functional (June 26). To be finalized Thursday.</div>
