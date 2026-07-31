@@ -7,11 +7,16 @@
 <style>
 :root { color-scheme: light; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Calibri, system-ui, sans-serif; background: #eef2f7; color: #1A2B4A; padding: 32px 20px; line-height: 1.35; }
+body { font-family: 'Segoe UI', Calibri, system-ui, sans-serif; background: #eef2f7; color: #1A2B4A; padding: 28px 20px; line-height: 1.35; }
 .wrap { max-width: 1180px; margin: 0 auto; }
 h1 { font-size: 26px; color: #1A2B4A; }
 .sub { font-size: 15px; color: #2E6FB0; font-weight: 600; margin-top: 2px; }
-.meta { font-size: 12px; color: #667; font-style: italic; margin: 6px 0 20px; }
+.meta { font-size: 12px; color: #667; font-style: italic; margin: 6px 0 18px; }
+.tabs { display:flex; gap:6px; border-bottom:2px solid #d0d7e2; margin-bottom:22px; }
+.tab { padding:10px 20px; font-size:13px; font-weight:700; color:#8794a8; cursor:pointer; border:none; background:none; border-bottom:3px solid transparent; margin-bottom:-2px; }
+.tab.active { color:#1A2B4A; border-bottom-color:#2E6FB0; }
+.panel { display:none; }
+.panel.active { display:block; }
 .lane-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8794a8; margin: 22px 0 10px; }
 .flow { display: flex; flex-direction: column; align-items: center; }
 .row { display: flex; justify-content: center; gap: 22px; width: 100%; flex-wrap: wrap; }
@@ -30,6 +35,7 @@ h1 { font-size: 26px; color: #1A2B4A; }
 .demo { border-top: 5px solid #c8851a; background:#fffaf1; }
 .prov { border-top: 5px solid #1A2B4A; background: #eef2f9; }
 .grant { border-top: 5px solid #1f8a5b; background: #eafaf0; }
+.step { border-top: 5px solid #7a4fb0; background:#f7f3fc; }
 .arrow { width: 2px; height: 22px; background: #9fb0c8; position: relative; margin: 2px 0; }
 .arrow::after { content:''; position:absolute; bottom:-1px; left:-4px; border-left:5px solid transparent; border-right:5px solid transparent; border-top:8px solid #9fb0c8; }
 .diamond { width: 320px; background:#b8322f; color:#fff; border-radius:11px; padding:12px 16px; text-align:center; box-shadow:0 2px 6px rgba(184,50,47,.25); }
@@ -41,7 +47,12 @@ h1 { font-size: 26px; color: #1A2B4A; }
 .colhead { font-size:12.5px; font-weight:700; text-align:center; width:260px; padding:5px; border-radius:8px 8px 0 0; }
 .colhead.ls { background:#1f8a5b; color:#fff;}
 .colhead.hs { background:#7a4fb0; color:#fff;}
-.legend { margin-top: 26px; background:#fff; border-radius:11px; padding:15px 18px; border:1px solid #dde4ee; }
+.stepnode { display:flex; align-items:flex-start; gap:14px; width:720px; background:#fff; border:1px solid #dde4ee; border-left:5px solid #7a4fb0; border-radius:11px; padding:13px 16px; box-shadow:0 2px 6px rgba(26,43,74,.08); }
+.stepnum { flex:0 0 30px; height:30px; background:#7a4fb0; color:#fff; border-radius:50%; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; }
+.stepbody .ttl { font-size:14px; font-weight:700; }
+.stepbody .body { font-size:12px; color:#3a4a63; margin-top:2px; }
+.stepbody .who { font-size:11px; font-weight:600; color:#7a4fb0; margin-top:4px; }
+.legend { margin-top: 24px; background:#fff; border-radius:11px; padding:15px 18px; border:1px solid #dde4ee; }
 .legend h3 { font-size:13px; color:#1A2B4A; margin-bottom:7px; }
 .legend ul { list-style:none; font-size:12px; color:#3a4a63; }
 .legend li { padding:2px 0; padding-left:16px; position:relative; }
@@ -60,14 +71,22 @@ a:hover { border-bottom-color:#2E6FB0; }
 <body>
 <div class="wrap">
   <h1>Helix GenoSphere&trade; MCP Connector</h1>
-  <div class="sub">Inbound Access Request &mdash; Intake &rarr; Triage &rarr; Legal Gate &rarr; Demo &rarr; Provisioning</div>
-  <div class="meta">Legal prerequisites confirmed before any demo &middot; Launch phase &middot; Updated July 14, 2026 (per Legal)</div>
+  <div class="sub">Inbound Access Request &mdash; Workflow</div>
+  <div class="meta">Legal prerequisites confirmed before any demo &middot; Launch phase &middot; Updated July 2026</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab(event,'overview')">Overview (all segments)</button>
+    <button class="tab" onclick="showTab(event,'hs')">Health Systems &mdash; detailed</button>
+  </div>
+
+  <!-- ===================== OVERVIEW TAB ===================== -->
+  <div id="overview" class="panel active">
 
   <div class="lane-label">&#9312; Intake &mdash; three channels</div>
   <div class="flow"><div class="row">
     <div class="node intake-form"><div class="tag" style="color:#2E6FB0">A &middot; Website</div><div class="ttl">Form submission</div><div class="body">HubSpot form on the <a href="https://www.helix.com/resources/helix-genosphere-claude-connector" target="_blank">MCP landing page</a> &mdash; name, email, institution. Self-selects segment.</div></div>
     <div class="node intake-email"><div class="tag" style="color:#6a7fb5">B &middot; Email</div><div class="ttl">Email inquiry</div><div class="body">Sent to <b>mcp@helix.com</b>.</div></div>
-    <div class="node intake-other"><div class="tag" style="color:#8a6d3b">C &middot; Other</div><div class="ttl">All other inbound</div><div class="body">Referrals, rep emails, events, directory clicks &rarr; funneled to <b>mcp@helix.com</b>.</div></div>
+    <div class="node intake-other"><div class="tag" style="color:#8a6d3b">C &middot; Other</div><div class="ttl">All other inbound</div><div class="body">Referrals, rep emails, events, directory clicks, Commercial or Partner Success &rarr; funneled to <b>mcp@helix.com</b>.</div></div>
   </div><div class="arrow"></div></div>
 
   <div class="lane-label">&#9313; Triage &mdash; log &amp; route (tracked in Excel)</div>
@@ -84,7 +103,7 @@ a:hover { border-bottom-color:#2E6FB0; }
     </div>
     <div style="display:flex;flex-direction:column;align-items:center">
       <div class="colhead hs">HEALTH SYSTEMS / HRN</div>
-      <div class="node hs"><div class="ttl">Site DA takes the lead</div><div class="body">The site DA picks up the request and supports outreach, mirroring the Cohort Builder Explorer process. They coordinate the confidentiality and ZDR steps that follow.</div><div class="who">Health Systems DA</div></div>
+      <div class="node hs"><div class="ttl">DA / Partner Success takes the lead</div><div class="body">The site DA picks up the request and supports outreach, mirroring the Cohort Builder Explorer process. See the Health Systems tab for the detailed steps.</div><div class="who">Health Systems DA / Partner Success</div></div>
     </div>
   </div><div class="arrow"></div></div>
 
@@ -106,7 +125,7 @@ a:hover { border-bottom-color:#2E6FB0; }
 
   <div class="lane-label">&#9316; Demo meeting</div>
   <div class="flow"><div class="row">
-    <div class="node demo" style="width:560px"><div class="tag" style="color:#c8851a">Live session</div><div class="ttl">MCP overview + brief demo</div><div class="body">Overview slides (what it does / guardrails) &rarr; 1 access slide &rarr; live demo in Claude. Reiterate T&amp;Cs as FYI.</div><div class="who">Basil Khuder / Product (technical + demo only)</div></div>
+    <div class="node demo" style="width:560px"><div class="tag" style="color:#c8851a">Live session &middot; DA discretion</div><div class="ttl">MCP overview + brief demo</div><div class="body">Overview slides (what it does / guardrails) &rarr; 1 access slide &rarr; live demo in Claude. Can be deferred until requirements confirmed, or run earlier for strong use cases; JOCs are a natural venue. Basil supports larger/technical groups.</div><div class="who">Basil Khuder / Product (technical + demo)</div></div>
   </div><div class="arrow"></div></div>
 
   <div class="lane-label">&#9317; Provisioning &mdash; legal complete, then access</div>
@@ -117,11 +136,11 @@ a:hover { border-bottom-color:#2E6FB0; }
   <div class="flow"><div class="row">
     <div style="display:flex;flex-direction:column;align-items:center">
       <div class="colhead ls">LIFE SCIENCES &mdash; centralized</div>
-      <div class="node ls" style="width:260px"><div class="tag" style="color:#1f8a5b">Step 6A</div><div class="ttl">LS files a DEX ticket</div><div class="body">LS files a <a href="https://myhelix.atlassian.net/servicedesk/customer/portal/26/group/71/create/10929" target="_blank">DEX ticket</a>; DEX adds the <b>anthropic-enterprise-mcp</b> group per named user.</div><div class="who">LS BD &rarr; DEX</div></div>
+      <div class="node ls" style="width:260px"><div class="tag" style="color:#1f8a5b">LS path</div><div class="ttl">LS files a DEX ticket</div><div class="body">LS files a <a href="https://myhelix.atlassian.net/servicedesk/customer/portal/26/group/71/create/10929" target="_blank">DEX ticket</a>; DEX adds the <b>anthropic-enterprise-mcp</b> group per named user.</div><div class="who">LS BD &rarr; DEX</div></div>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center">
       <div class="colhead hs">HEALTH SYSTEMS &mdash; site-controlled</div>
-      <div class="node hs" style="width:260px"><div class="tag" style="color:#7a4fb0">Step 6B</div><div class="ttl">Site adds the group</div><div class="body">Site adds the MCP group per named user &mdash; like Explorer/Genesis today.</div><div class="who">Site IdP / admin</div></div>
+      <div class="node hs" style="width:260px"><div class="tag" style="color:#7a4fb0">HS path</div><div class="ttl">SUPP ticket &rarr; site adds users</div><div class="body">DA files a SUPP ticket; DEX adds the partner to the approved MCP list; partner IT adds users to the MCP group via their Explorer SSO. See HS tab.</div><div class="who">DA &rarr; DEX &rarr; partner IT</div></div>
     </div>
   </div><div class="arrow"></div></div>
 
@@ -140,16 +159,63 @@ a:hover { border-bottom-color:#2E6FB0; }
       <li><b>Open items.</b> Confirm marketplace-initiated access still enforces T&amp;Cs (Nicole/Matt); clarify SSO for MCP (Jim); unified T&amp;Cs still in development (Legal).</li>
     </ul>
   </div>
+  </div><!-- /overview -->
+
+  <!-- ===================== HEALTH SYSTEMS TAB ===================== -->
+  <div id="hs" class="panel">
+    <div class="lane-label" style="color:#7a4fb0">Health Systems / HRN &mdash; detailed access workflow</div>
+    <p style="font-size:12.5px;color:#3a4a63;margin-bottom:18px;max-width:760px">For existing HRN partners, the MCP is treated as a feature of the research platform, so access builds on the same Explorer SSO the site already controls. Steps below follow Partner Success onboarding (per Cindy).</p>
+
+    <div class="flow">
+      <div class="stepnode"><div class="stepnum">1</div><div class="stepbody"><div class="ttl">Partner initiates interest</div><div class="body">Via the Commercial team, Partner Success, or the webform. Any channel is fine &mdash; all roads lead to intake.</div><div class="who">Partner &rarr; Commercial / Partner Success / webform</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">2</div><div class="stepbody"><div class="ttl">Log to the intake tracker</div><div class="body">Partner Success adds the partner to the <a href="https://docs.google.com/spreadsheets/d/11GrxYLOw6jAje_-Yb05B-VQrQCz71MRvH91F1zcghvs/edit" target="_blank">intake tracker</a>.</div><div class="who">Partner Success</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">3</div><div class="stepbody"><div class="ttl">DA responds with intro + requirements</div><div class="body">DA shares intro information and the access requirements: (a) has Explorer SSO, (b) is a Claude enterprise customer with zero data retention, (c) will sign Helix's ZDR agreement.</div><div class="who">DA (Delivery/Account lead)</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">4</div><div class="stepbody"><div class="ttl">Demo &mdash; at DA discretion</div><div class="body">If no concrete use case yet, defer the demo until requirements are confirmed. If there's strong interest, demo earlier. JOCs are a natural venue for a Partner Success demo-lite; Basil Khuder supports larger, technical groups.</div><div class="who">DA &middot; Basil / Product for technical demos</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">5</div><div class="stepbody"><div class="ttl">Confirm requirements, then DA submits a SUPP ticket</div><div class="body">Once the three requirements are confirmed, the DA files a SUPP ticket including: partner name; confirmation of Explorer SSO access (just the SSO &mdash; users don't need to be in the Explorer group yet); and the action &ldquo;Need access to MCP Connector.&rdquo; If the partner lacks Explorer SSO, they complete the Explorer steps first.</div><div class="who">DA &rarr; SUPP ticket</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">6</div><div class="stepbody"><div class="ttl">DEX adds the partner to the approved MCP list</div><div class="body">The DEX team adds the HRN partner to the approved list for MCP access.</div><div class="who">DEX team</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">7</div><div class="stepbody"><div class="ttl">Partner IT adds users to the MCP group</div><div class="body">The partner's IT administrator adds the desired users to the &ldquo;MCP&rdquo; user group through their Explorer SSO &mdash; the site controls this, just like Explorer/Genesis today.</div><div class="who">Partner IT administrator</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">8</div><div class="stepbody"><div class="ttl">Partner IT distributes access via Claude enterprise</div><div class="body">Partner IT updates the user Claude configuration and distributes MCP access through each user's Claude enterprise account.</div><div class="who">Partner IT administrator</div></div></div>
+      <div class="arrow"></div>
+      <div class="stepnode"><div class="stepnum">9</div><div class="stepbody"><div class="ttl">User authenticates &amp; activates</div><div class="body">The user follows the GenoSphere MCP Getting Started Guide: enable the connector in Claude &rarr; Okta sign-in &rarr; accept platform T&amp;Cs. Access is read-only, aggregate-only, Claude-only.</div><div class="who">Authorized user</div></div></div>
+    </div>
+
+    <div class="legend">
+      <h3>Access requirements (all three must be met)</h3>
+      <ul>
+        <li>Health System has <b>Explorer SSO</b> access (if not, that's step #1 &mdash; go through the Explorer guide first).</li>
+        <li>They are a <b>Claude enterprise customer with zero data retention</b>.</li>
+        <li>They <b>sign Helix's ZDR agreement</b> (the GenoSphere MCP Access Agreement).</li>
+      </ul>
+    </div>
+  </div><!-- /hs -->
+
   <div class="links">
     <h3>Links &amp; resources</h3>
     <ul>
       <li><a href="https://www.helix.com/resources/helix-genosphere-claude-connector" target="_blank">MCP connector landing page</a> &mdash; public overview + request form</li>
       <li><a href="https://myhelix.atlassian.net/servicedesk/customer/portal/26/group/71/create/10929" target="_blank">DEX access ticket</a> &mdash; request the anthropic-enterprise-mcp group (LS path)</li>
-      <li><a href="https://docs.google.com/spreadsheets/d/11GrxYLOw6jAje_-Yb05B-VQrQCz71MRvH91F1zcghvs/edit" target="_blank">MCP access lead list</a> &mdash; log inbound &amp; not-yet-eligible leads</li>
+      <li><a href="https://docs.google.com/spreadsheets/d/11GrxYLOw6jAje_-Yb05B-VQrQCz71MRvH91F1zcghvs/edit" target="_blank">MCP access lead / intake tracker</a> &mdash; log inbound &amp; not-yet-eligible leads</li>
       <li><b>GenoSphere MCP Access Agreement</b> &mdash; the ZDR side letter signed by the institution</li>
+      <li><b>GenoSphere MCP Getting Started Guide</b> &mdash; end-user authentication steps</li>
     </ul>
   </div>
-  <div class="note">Internal working document &mdash; reflects Legal input from J. Shah / M. Ziv (July 14, 2026), the LSG bi-weekly (June 29), and the cross-functional (June 26). To be finalized Thursday.</div>
+  <div class="note">Internal working document &mdash; reflects Legal input (J. Shah / M. Ziv, July 14, 2026), HS onboarding steps (Partner Success / Cindy), the LSG bi-weekly (June 29), and the cross-functional (June 26).</div>
 </div>
+
+<script>
+function showTab(e,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
 </body>
 </html>
